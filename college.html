@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Attendance System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>College Attendance System</h1>
+    </header>
+
+    <section class="form-container">
+        <h2>Mark Attendance</h2>
+        <form id="attendanceForm">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" name="studentName" required>
+            <br><br>
+            <label for="attendanceStatus">Attendance Status:</label>
+            <select id="attendanceStatus" name="attendanceStatus" required>
+                <option value="Present">Present</option>
+                <option value="Absent">Absent</option>
+            </select>
+            <br><br>
+            <button type="submit">Mark Attendance</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Attendance Record</h2>
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Attendance Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Attendance records will be displayed here -->
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        // Handle form submission
+        document.getElementById("attendanceForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the form from refreshing the page
+
+            // Get the values from the form
+            var studentName = document.getElementById("studentName").value;
+            var attendanceStatus = document.getElementById("attendanceStatus").value;
+
+            // Create a new row in the attendance table
+            var table = document.getElementById("attendanceTable").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+
+            // Insert cells into the new row
+            var nameCell = newRow.insertCell(0);
+            var statusCell = newRow.insertCell(1);
+
+            // Set the text content of the cells
+            nameCell.textContent = studentName;
+            statusCell.textContent = attendanceStatus;
+
+            // Clear the form inputs
+            document.getElementById("attendanceForm").reset();
+        });
+    </script>
+</body>
+</html>
